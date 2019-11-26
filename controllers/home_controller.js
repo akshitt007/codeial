@@ -1,3 +1,3 @@
 module.exports.home =function(req,res){
-    return res.end ('<h1> Express is up for website </h1>');
+     res.end ('<h1> Express is up for website </h1>');
 };
