@@ -1,0 +1,17 @@
+{
+  "name": "gameofcodes",
+  "version": "1.0.0",
+  "description": "My social website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "social"
+  ],
+  "author": "Akshit",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
