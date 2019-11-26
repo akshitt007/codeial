@@ -2,11 +2,14 @@ const express = require('express');
 const app = express();
 const port = 8000;
 
-//ecpress layout library 
+//express layout library 
 const expressLayouts = require('express-ejs-layouts');
 
 //use express layouts and it should be before views
 app.use(expressLayouts);
+ 
+//use static files
+app.use(express.static('./assets'));
 
 //use express router
 app.use('/',require('./routes'));
