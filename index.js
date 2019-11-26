@@ -7,6 +7,10 @@ const expressLayouts = require('express-ejs-layouts');
 
 //use express layouts and it should be before views
 app.use(expressLayouts);
+
+//extract style and scripts for subpages from layout
+app.set('layout extractStyles',true);
+app.set('layout extractScripts',true);
  
 //use static files
 app.use(express.static('./assets'));
