@@ -2,12 +2,23 @@ const User = require('../models/user');
 
 
 module.exports.profile =function(req,res){
-    // res.end ('<h1> User controller </h1>');
-    return res.render('user_profile',{
-         title: "Profile page"
-    });
-}
+    if(req.cookies.user_id){
+        User.findById(req.cookies.user_id, function(err,user){
+            if (user){
+                return res.render('user_profile',{
+                    title : "user profile",
+                    user :user
+                }
+                )
 
+            }
+            return res.redirect('/users/sign-in');
+        });
+    }
+    else{
+        return res.redirect('/users/sign-in');
+    }
+}
 module.exports.signUp = function(req,res){
     return res.render('user_sign_up',{
         title: "Codeial|Sign up"
@@ -55,7 +66,7 @@ module.exports.createSession = function(req,res){
                  return res.redirect('back');
                  }
                  //handle session creation
-                 res.cookie('user_is',user.id);
+                 res.cookie('user_id',user.id);
                  return res.redirect('/users/profile');
 
                 }
