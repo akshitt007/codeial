@@ -4,6 +4,12 @@ const app = express();
 const port = 8000;
 const db = require('./config/mongoose');
 
+//used for session cookie
+const session = require('express-session');
+const passport = require('passport');
+const passportLocal = require('./config/passport-local-strategy.js');
+
+
 app.use(express.urlencoded());
 
 app.use(cookieParser());
@@ -21,14 +27,30 @@ app.set('layout extractScripts',true);
 //use static files
 app.use(express.static('./assets'));
 
-//use express router
-app.use('/',require('./routes'));
+
 
 //setup view engine ejs
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
 
+app.use(session({
+      name : 'codeial',
+      //todo change it later when deployement
+      secret : 'blahsomething',
+      saveUninitialized: false,
+      resave: false,
+      cookie:{
+          maxAge:(1000*60*100)
+      }
+
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+//use express router
+app.use('/',require('./routes'));
 
 
  
