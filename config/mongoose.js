@@ -11,3 +11,5 @@ db.once('open',function(){
 console.log("connect to database :: MongoDB");
 
 });
+
+module.exports =db;
