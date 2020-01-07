@@ -1,15 +1,15 @@
-const mongoosse = require('mongoose');
+const mongoose = require('mongoose');
 
-//mongoDB is already installed in my system
+mongoose.connect('mongodb://localhost/codeial_development');
 
-mongoosse.connect('mongodb://localhost/codeial_developement');
+const db = mongoose.connection;
 
-const db =mongoosse.connection;
+db.on('error', console.error.bind(console, "Error connecting to MongoDB"));
 
-db.on('error', console.error.bind(console ,"Error connecting to mongoDB"));
-db.once('open',function(){
-console.log("connect to database :: MongoDB");
 
+db.once('open', function(){
+    console.log('Connected to Database :: MongoDB');
 });
 
-module.exports =db;
+
+module.exports = db;
